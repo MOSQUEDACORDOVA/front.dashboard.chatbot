@@ -1,0 +1,188 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-bordered"
+  data-assets-path="assets/"
+  data-template="vertical-menu-template-bordered"
+  data-style="light">
+  <head>
+
+    <title>Nuevo Depósito</title>
+    <script>
+       // Verificar si el usuario está autenticado
+      function checkAuthentication() {
+        const operation = localStorage.getItem('operation');
+        
+        if (!operation) {
+          // Si no hay operation, redirigir al usuario a la página de inicio de sesión
+          window.location.href = 'auth-login-cover.html';  // Ajusta la ruta según tu configuración
+        } 
+      }
+      // Ejecutar la verificación al cargar la página
+      window.onload = checkAuthentication;
+    </script>
+    <script src="js/head.js?v=1.3343"></script>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+          rel="stylesheet" />
+    
+        <!-- Icons -->
+        <link rel="stylesheet" href="assets/vendor/fonts/fontawesome.css?v=1.3343" />
+        <link rel="stylesheet" href="assets/vendor/fonts/tabler-icons.css?v=1.3343" />
+        <link rel="stylesheet" href="assets/vendor/fonts/flag-icons.css?v=1.3343" />
+    
+        <!-- Core CSS -->
+        <link rel="stylesheet" href="assets/vendor/css/rtl/core.css?v=1.3343" />
+        <link rel="stylesheet" href="assets/vendor/css/rtl/theme-bordered.css?v=1.3343" />
+    
+        <link rel="stylesheet" href="assets/css/demo.css?v=1.3343" />
+        
+        <!-- Vendors CSS -->
+        <link rel="stylesheet" href="assets/vendor/libs/node-waves/node-waves.css?v=1.3343" />
+    
+        <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css?v=1.3343" />
+        <link rel="stylesheet" href="assets/vendor/libs/typeahead-js/typeahead.css?v=1.3343" />
+        <link rel="stylesheet" href="assets/vendor/libs/plyr/plyr.css?v=1.3343" />
+    
+
+    <!-- Helpers -->
+    <script src="assets/vendor/js/helpers.js?v=1.3343"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="assets/js/config.js?v=1.3343"></script>
+
+    
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content">
+      <div class="layout-container justify-content-center">
+        
+
+        <!-- Layout container -->
+        <div class="col-12 col-lg-6" >
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row g-6">
+                <div class="col-12">
+                  <div class="card p-0 mb-6">
+                    <div class="card-body d-flex flex-column flex-md-row justify-content-between p-0 pt-6">
+                      
+                      <div
+                        class="app-academy-md-50 card-body d-flex align-items-md-center flex-column text-md-center mb-6 py-6">
+                        <span class="card-title mb-4 lh-lg px-md-12 h4 text-heading">
+                          ¡Recibimos tu información 😃!
+                          
+                        </span>
+                        <p class="mb-4 px-0 px-md-2">
+                          Pronto serás contactado a través de WhatsApp por un agente que validará tu información. 
+                          También puedes escribirnos directamente a nuestro WhatsApp 🙌
+                        </p>
+                        <div class="d-flex align-items-center justify-content-between app-academy-md-80">
+                          <a href="https://api.whatsapp.com/send?phone=51945692831" class="btn btn-primary " target="_blank">
+                            <i class="ti ti-phone ti-md me-5"></i> Escribenos 
+                          </a>
+                        </div>
+
+                        <p class="mt-5 mb-4 px-0 px-md-2">
+                          Mientras tanto también puedes ver los productos que esperan por ti 😎
+                        </p>
+
+                        <div class="d-flex align-items-center justify-content-between app-academy-md-80">
+                          <a href="https://hugee.site" class="btn btn-primary " target="_blank">
+                            <i class="ti ti-shopping-bag ti-md me-5"></i> Ir de compras 
+                          </a>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="d-flex align-items-center justify-content-center app-academy-md-80">
+                  <a href="billetera.html" class="btn btn-primary " >
+                    <i class="ti ti-file-dollar ti-md me-5"></i> Ir a tu Billetera 
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- / Content -->
+            
+
+            <!-- Footer -->
+            <footer 
+              class="content-footer footer bg-footer-theme"
+              id="footer">
+            </footer>
+            <script>
+              // Cargar el navbar desde el archivo HTML
+              fetch('componentes/footer.html')
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.text();
+                })
+                .then(data => {
+                  document.getElementById('footer').innerHTML = data; // Insertar el contenido en el contenedor
+                })
+                .catch(error => console.error('Error loading the navbar:', error));
+            </script>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="assets/vendor/libs/jquery/jquery.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/popper/popper.js?v=1.3343"></script>
+    <script src="assets/vendor/js/bootstrap.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/node-waves/node-waves.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/hammer/hammer.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/i18n/i18n.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/typeahead-js/typeahead.js?v=1.3343"></script>
+    <script src="assets/vendor/js/menu.js?v=1.3343"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js?v=1.3343"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js?v=1.3343"></script>
+
+    <!-- Page JS -->
+
+    
+ </body>
+</html>

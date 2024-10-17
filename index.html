@@ -1,0 +1,193 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="light-style layout-wide customizer-hide"
+  dir="ltr"
+  data-theme="theme-bordered"
+  data-assets-path="assets/"
+  data-template="vertical-menu-template-bordered"
+  data-style="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Ingresar</title>
+
+    <meta name="description" content="Ingresar" />
+    
+    <script src="js/head.js?v=1.3343"></script>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+          rel="stylesheet" />
+    
+        <!-- Icons -->
+        <link rel="stylesheet" href="assets/vendor/fonts/fontawesome.css?v=1.3344" />
+        <link rel="stylesheet" href="assets/vendor/fonts/tabler-icons.css?v=1.3344" />
+        <link rel="stylesheet" href="assets/vendor/fonts/flag-icons.css?v=1.3344" />
+    
+        <!-- Core CSS -->
+        <link rel="stylesheet" href="assets/vendor/css/rtl/core.css?v=1.3344" />
+        <link rel="stylesheet" href="assets/vendor/css/rtl/theme-bordered.css?v=1.3344" />
+    
+        <link rel="stylesheet" href="assets/css/demo.css?v=1.3344" />
+        
+        <!-- Vendors CSS -->
+        <link rel="stylesheet" href="assets/vendor/libs/node-waves/node-waves.css?v=1.3344" />
+    
+        <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css?v=1.3344" />
+        <link rel="stylesheet" href="assets/vendor/libs/typeahead-js/typeahead.css?v=1.3344" />
+        <link rel="stylesheet" href="assets/vendor/libs/plyr/plyr.css?v=1.3344" />
+    
+
+    <!-- Vendor -->
+    <link rel="stylesheet" href="assets/vendor/libs/@form-validation/form-validation.css?v=1.3344" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css?v=1.3344" />
+
+    <!-- Helpers -->
+    <script src="assets/vendor/js/helpers.js?v=1.3344"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="assets/vendor/js/template-customizer.js?v=1.3344"></script>
+
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="assets/js/config.js?v=1.3344"></script>
+
+  </head>
+
+  <body>
+    <!-- Content -->
+
+    <div class="authentication-wrapper authentication-cover">
+      <!-- Logo -->
+      <a href="index.html" class="app-brand auth-cover-brand">
+        <span class="app-brand-logo">
+          <span class="app-brand-text text-black demo menu-text fw-bold">Quality Mountain</span>               
+        </span>
+      </a>
+      <!-- /Logo -->
+      <div class="authentication-inner row m-0">
+        <!-- /Left Text -->
+        <div class="d-none d-lg-flex col-lg-8 p-0">
+          <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
+            <img
+              src="assets/img/illustrations/auth-login-illustration-light.png"
+              alt="auth-login-cover"
+              class="my-5 auth-illustration"
+              data-app-light-img="illustrations/auth-login-illustration-light.png"
+              data-app-dark-img="illustrations/auth-login-illustration-dark.png" />
+
+            <img
+              src="assets/img/illustrations/bg-shape-image-light.png"
+              alt="auth-login-cover"
+              class="platform-bg"
+              data-app-light-img="illustrations/bg-shape-image-light.png"
+              data-app-dark-img="illustrations/bg-shape-image-dark.png" />
+          </div>
+        </div>
+        <!-- /Left Text -->
+
+        <!-- Login -->
+        <div class="d-flex col-12 col-lg-4 align-items-center authentication-bg p-sm-12 p-6">
+          <div class="w-px-400 mx-auto mt-12 pt-5">
+            <h4 class="mb-1">Bienvenido de nuevo! 👋</h4>
+            <p class="mb-6">Ingresa para administrar tus propiedades.</p>
+
+            <form id="formAuthenticationLogin" class="mb-4">
+              <div class="mb-6">
+                <label class="form-label" for="phone-number-mask">WhatsApp</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="ti ti-brand-whatsapp"></i>
+                  </span>
+                  <input
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    class="form-control phone-number-mask"
+                    required
+                    placeholder="Ej: 0424 945 692831" 
+                    aria-label="WhatsApp" />
+                </div>
+                <small id="phoneError" class="text-danger d-none">El campo de teléfono es obligatorio.</small>
+              </div>
+            
+              <div class="mb-4 form-password-toggle">
+                <label class="form-label" for="password">Contraseña</label>
+                <div class="input-group input-group-merge">
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    name="password"
+                    required
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    aria-describedby="password"
+                    aria-label="Password" />
+                  <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                </div>
+                <small id="passwordError" class="text-danger d-none">El campo de contraseña es obligatorio.</small>
+              </div>
+            
+              <div id="errorAlert" class="alert alert-danger d-none" role="alert"></div>
+            
+              <button id="loginButton" class="btn btn-primary d-grid w-100">
+                <span id="loginButtonText">Ingresar</span>
+                <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              </button>
+            </form>
+            
+            
+            
+
+            <div class="alert alert-danger d-none" id="errorAlert" role="alert">
+            </div>
+
+
+            
+
+            
+          </div>
+        </div>
+        <!-- /Login -->
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="assets/vendor/libs/jquery/jquery.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/popper/popper.js?v=1.3344"></script>
+    <script src="assets/vendor/js/bootstrap.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/node-waves/node-waves.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/hammer/hammer.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/i18n/i18n.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/typeahead-js/typeahead.js?v=1.3344"></script>
+    <script src="assets/vendor/js/menu.js?v=1.3344"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="assets/vendor/libs/@form-validation/popular.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/@form-validation/bootstrap5.js?v=1.3344"></script>
+    <script src="assets/vendor/libs/@form-validation/auto-focus.js?v=1.3344"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js?v=1.3344"></script>
+
+    <!-- Page JS -->
+    <script src="assets/js/pages-auth-login.js?v=1.3344"></script>
+  </body>
+</html>
