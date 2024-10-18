@@ -9,7 +9,7 @@
   data-template="vertical-menu-template-bordered"
   data-style="light">
   <head>
-
+    <script src="js/ruta-protegida.js?v=1.3343"></script>
     <title>Propiedades</title>
     <meta name="description" content="Billetera" />
 
@@ -176,17 +176,10 @@
                       <table id="miTabla" class="display">
                         <thead>
                           <tr>
-                            <th>Nombre</th>
-                            <th>Posición</th>
-                            <th>Oficina</th>
-                            <th>Edad</th>
-                            <th>Fecha de inicio</th>
-                            <th>Salario</th>
-                            <th>Proyecto</th>
-                            <th>Departamento</th>
-                            <th>Duración</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
+                            <th>Owner</th>
+                            <th>Property Code</th>
+                            <th>Type Of Property</th>
+                            <th>Physical Address</th>
                             <th>Acciones</th>
                           </tr>
                         </thead>
@@ -268,23 +261,33 @@
     <script src="../../assets/js/extended-ui-sweetalert2.js?v=1.3343"></script>
     
     <script>
+      const accessToken = localStorage.getItem('access_token');
+
       $(document).ready(function() {
         const table = $('#miTabla').DataTable({
-          "ajax": "../../assets/json/propiedades.json", // Ruta del archivo JSON
+          "ajax": {
+            "url": "https://back.dashboard.chatbot.mosquedacordova.com/api/property", // Ruta del archivo JSON
+            "type": "GET", // Método HTTP
+            "headers": {
+                'Authorization': `Bearer ${accessToken}`, // Agregar encabezado de autorización
+                'Content-Type': 'application/json' // Tipo de contenido
+            },
+            "data": function(d) {
+              // Aquí puedes agregar más parámetros si es necesario
+              // `d` contiene información sobre el estado de la tabla y puedes modificarla
+            },
+            "dataSrc": "data" // Cambia esto según el campo donde se encuentren los registros en la respuesta
+          },
           "scrollX": true, // Habilitar el scroll horizontal
-          "lengthChange": false,
+          "lengthChange": false, // Permitir cambiar el número de registros por página
+          "pageLength": 10, // Número de registros por página
+          "processing": true, // Habilitar el indicador de procesamiento
+          "serverSide": true, // Habilitar el procesamiento del lado del servidor
           "columns": [
-            { "data": "nombre" },
-            { "data": "posicion" },
-            { "data": "oficina" },
-            { "data": "edad" },
-            { "data": "fechaInicio" },
-            { "data": "salario" },
-            { "data": "proyecto" },
-            { "data": "departamento" },
-            { "data": "duracion" },
-            { "data": "telefono" },
-            { "data": "email" },
+            { "data": "owner", "orderable": false  },
+            { "data": "property_code", "orderable": false  },
+            { "data": "type_of_property", "orderable": false  },
+            { "data": "physical_address", "orderable": false  },
             {
               "data": null,
               "defaultContent": "<button class='btn btn-primary edit-btn' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasEnd' aria-controls='offcanvasEnd'>Editar</button> <button type='button' class='btn btn-primary delete-btn'>Eliminar</button>",
@@ -343,7 +346,7 @@
           const paginationControl = $('#miTabla_wrapper .dt-paging');
           const infoControl = $('#miTabla_wrapper .dt-info');
           
-          if (rowCount <= 10) { // Cambia el número 10 al número de filas mínimo que desees
+          if (rowCount <= 2) { // Cambia el número 10 al número de filas mínimo que desees
             paginationControl.hide();
             infoControl.hide();
           } else {
