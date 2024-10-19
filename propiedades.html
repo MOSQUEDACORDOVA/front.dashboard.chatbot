@@ -23,35 +23,35 @@
       rel="stylesheet" />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css?v=1.3343" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/tabler-icons.css?v=1.3343" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/fonts/tabler-icons.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/fonts/flag-icons.css?v=1.3343" />
 
     <!-- Core CSS -->
 
-    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css?v=1.3343" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="assets/vendor/css/rtl/core.css?v=1.3343" class="template-customizer-core-css" />
     <link rel="stylesheet" href="assets/vendor/css/rtl/theme-bordered.css?v=1.3343" />
 
-    <link rel="stylesheet" href="../../assets/css/demo.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/css/demo.css?v=1.3343" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/libs/node-waves/node-waves.css?v=1.3343" />
 
-    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css?v=1.3343" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css?v=1.3343" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css?v=1.3343" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/animate-css/animate.css?v=1.3343" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/sweetalert2/sweetalert2.css?v=1.3343" />
-
+    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/libs/typeahead-js/typeahead.css?v=1.3343" />
+    <link href="js/dataTables/datatables.min.css?v=1.3343" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor/libs/animate-css/animate.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/libs/sweetalert2/sweetalert2.css?v=1.3343" />
+    <link rel="stylesheet" href="assets/vendor/libs/toastr/toastr.css?v=1.3343" />
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="../../assets/vendor/js/helpers.js?v=1.3343"></script>
+    <script src="assets/vendor/js/helpers.js?v=1.3343"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../../assets/js/config.js?v=1.3343"></script>
+    <script src="assets/js/config.js?v=1.3343"></script>
 
     <style>
       .dt-search,.dt-info{
@@ -76,6 +76,10 @@
         position: absolute;
         left: 0;
         top: 0;
+      }
+
+      .dt-layout-table{
+        overflow-y: auto;
       }
     </style>
   </head>
@@ -134,7 +138,8 @@
                     type="button"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasEnd"
-                    aria-controls="offcanvasEnd">
+                    aria-controls="offcanvasEnd"
+                    id="agregarPropiedad">
                     Agregar Nueva Propiedad
                   </button>
                   <div
@@ -143,7 +148,7 @@
                     id="offcanvasEnd"
                     aria-labelledby="offcanvasEndLabel">
                     <div class="offcanvas-header">
-                      <h5 id="offcanvasEndLabel" class="offcanvas-title">Offcanvas End</h5>
+                      <h5 id="offcanvasEndLabel" class="offcanvas-title">Agregar Propiedad</h5>
                       <button
                         type="button"
                         class="btn-close text-reset"
@@ -151,13 +156,186 @@
                         aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body my-auto mx-0 flex-grow-0">
-                      <p class="text-center">
-                        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
-                        graphic or web designs. The passage is attributed to an unknown typesetter in the 15th
-                        century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum
-                        for use in a type specimen book.
-                      </p>
-                      <button type="button" class="btn btn-primary mb-2 d-grid w-100">Continue</button>
+                      
+                      <form id="formPropiedad">
+                        <div class="mb-6">
+                          <label class="form-label" for="owner">Owner</label>
+                          <div class="input-group input-group-merge">
+                            <span id="owner2" class="input-group-text"><i class="ti ti-user"></i></span>
+                            <input type="text" class="form-control" id="owner" placeholder="Owner's Name" aria-label="Owner's Name" aria-describedby="owner2" required />
+                          </div>
+                          <small id="ownerError" class="text-danger d-none"></small>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="property_code">Property Code</label>
+                          <div class="input-group input-group-merge">
+                            <span id="property_code2" class="input-group-text"><i class="ti ti-code"></i></span>
+                            <input type="text" class="form-control" id="property_code" placeholder="Property Code" aria-label="Property Code" aria-describedby="property_code2" required />
+                          </div>
+                          <small id="property_codeError" class="text-danger d-none"></small>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="type_of_property">Type of Property</label>
+                          <div class="input-group input-group-merge">
+                            <span id="type_of_property2" class="input-group-text"><i class="ti ti-home"></i></span>
+                            <input type="text" class="form-control" id="type_of_property" placeholder="Type of Property" aria-label="Type of Property" aria-describedby="type_of_property2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="physical_address">Physical Address</label>
+                          <div class="input-group input-group-merge">
+                            <span id="physical_address2" class="input-group-text"><i class="ti ti-map-pin"></i></span>
+                            <input type="text" class="form-control" id="physical_address" placeholder="Physical Address" aria-label="Physical Address" aria-describedby="physical_address2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="building_complex">Building Complex</label>
+                          <div class="input-group input-group-merge">
+                            <span id="building_complex2" class="input-group-text"><i class="ti ti-building"></i></span>
+                            <input type="text" class="form-control" id="building_complex" placeholder="Building Complex" aria-label="Building Complex" aria-describedby="building_complex2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="town">Town</label>
+                          <div class="input-group input-group-merge">
+                            <span id="town2" class="input-group-text"><i class="ti ti-map"></i></span>
+                            <input type="text" class="form-control" id="town" placeholder="Town" aria-label="Town" aria-describedby="town2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="map">Map</label>
+                          <div class="input-group input-group-merge">
+                            <span id="map2" class="input-group-text"><i class="ti ti-map"></i></span>
+                            <input type="text" class="form-control" id="map" placeholder="Map URL" aria-label="Map URL" aria-describedby="map2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="bedrooms">Bedrooms</label>
+                          <div class="input-group input-group-merge">
+                            <span id="bedrooms2" class="input-group-text"><i class="ti ti-bed"></i></span>
+                            <input type="text" class="form-control" id="bedrooms" placeholder="Number of Bedrooms" aria-label="Number of Bedrooms" aria-describedby="bedrooms2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="bathrooms">Bathrooms</label>
+                          <div class="input-group input-group-merge">
+                            <span id="bathrooms2" class="input-group-text"><i class="ti ti-bath"></i></span>
+                            <input type="text" class="form-control" id="bathrooms" placeholder="Number of Bathrooms" aria-label="Number of Bathrooms" aria-describedby="bathrooms2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="king_bed">King Beds</label>
+                          <div class="input-group input-group-merge">
+                            <span id="king_bed2" class="input-group-text"><i class="ti ti-bed"></i></span>
+                            <input type="text" class="form-control" id="king_bed" placeholder="Number of King Beds" aria-label="Number of King Beds" aria-describedby="king_bed2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="queen_bed">Queen Beds</label>
+                          <div class="input-group input-group-merge">
+                            <span id="queen_bed2" class="input-group-text"><i class="ti ti-bed"></i></span>
+                            <input type="text" class="form-control" id="queen_bed" placeholder="Number of Queen Beds" aria-label="Number of Queen Beds" aria-describedby="queen_bed2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="twin_bed">Twin Beds</label>
+                          <div class="input-group input-group-merge">
+                            <span id="twin_bed2" class="input-group-text"><i class="ti ti-bed"></i></span>
+                            <input type="text" class="form-control" id="twin_bed" placeholder="Number of Twin Beds" aria-label="Number of Twin Beds" aria-describedby="twin_bed2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="sofa_bed">Sofa Beds</label>
+                          <div class="input-group input-group-merge">
+                            <span id="sofa_bed2" class="input-group-text"><i class="ti ti-bed"></i></span>
+                            <input type="text" class="form-control" id="sofa_bed" placeholder="Number of Sofa Beds" aria-label="Number of Sofa Beds" aria-describedby="sofa_bed2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="access_information">Access Information</label>
+                          <div class="input-group input-group-merge">
+                            <span id="access_information2" class="input-group-text"><i class="ti ti-accessible"></i></span>
+                            <input type="text" class="form-control" id="access_information" placeholder="Access Information" aria-label="Access Information" aria-describedby="access_information2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="cleaning_instructions">Cleaning Instructions</label>
+                          <div class="input-group input-group-merge">
+                            <span id="cleaning_instructions2" class="input-group-text"><i class="ti ti-trash"></i></span>
+                            <input type="text" class="form-control" id="cleaning_instructions" placeholder="Cleaning Instructions" aria-label="Cleaning Instructions" aria-describedby="cleaning_instructions2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="inspection_instructions">Inspection Instructions</label>
+                          <div class="input-group input-group-merge">
+                            <span id="inspection_instructions2" class="input-group-text"><i class="ti ti-list-check"></i></span>
+                            <input type="text" class="form-control" id="inspection_instructions" placeholder="Inspection Instructions" aria-label="Inspection Instructions" aria-describedby="inspection_instructions2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="maintenance_instructions">Maintenance Instructions</label>
+                          <div class="input-group input-group-merge">
+                            <span id="maintenance_instructions2" class="input-group-text"><i class="ti ti-paint"></i></span>
+                            <input type="text" class="form-control" id="maintenance_instructions" placeholder="Maintenance Instructions" aria-label="Maintenance Instructions" aria-describedby="maintenance_instructions2" />
+                          </div>
+                        </div>
+                      
+                        <div class="mb-6">
+                          <label class="form-label" for="owner_closet">Owner Closet</label>
+                          <div class="input-group input-group-merge">
+                            <span id="owner_closet2" class="input-group-text"><i class="ti ti-hanger"></i></span>
+                            <input type="text" class="form-control" id="owner_closet" placeholder="Owner Closet Information" aria-label="Owner Closet" aria-describedby="owner_closet2" />
+                          </div>
+                        </div>
+        
+                        <div class="mb-6">
+                          <label class="form-label" for="documents">Documents</label>
+                          <div class="input-group input-group-merge">
+                            <span id="documents2" class="input-group-text"><i class="ti ti-briefcase"></i></span>
+                            <input type="text" class="form-control" id="documents" placeholder="Documents" aria-label="Documents" aria-describedby="documents2" />
+                          </div>
+                        </div>
+        
+                        <div class="mb-6">
+                          <label class="form-label" for="payment_hskp">Payment Hskp</label>
+                          <div class="input-group input-group-merge">
+                            <span id="payment_hskp2" class="input-group-text"><i class="ti ti-credit-card"></i></span>
+                            <input type="text" class="form-control" id="payment_hskp" placeholder="Payment Hskp" aria-label="Payment Hskp" aria-describedby="payment_hskp2" />
+                          </div>
+                        </div>
+        
+                        <div class="mb-6">
+                          <label class="form-label" for="client_charge">Client Charge</label>
+                          <div class="input-group input-group-merge">
+                            <span id="client_charge2" class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
+                            <input type="text" class="form-control" id="client_charge" placeholder="Client Charge" aria-label="Client Charge" aria-describedby="client_charge2" />
+                          </div>
+                        </div>
+                      
+                        <div id="errorAlert" class="alert alert-danger d-none mb-2" role="alert"></div>
+                        <button id="loginButton" class="btn btn-primary d-grid w-100 mb-2">
+                          <span id="loginButtonText">Agregar</span>
+                          <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        </button>
+
+                      </form>
+                      
                       <button
                         type="button"
                         class="btn btn-label-secondary d-grid w-100"
@@ -180,9 +358,27 @@
                             <th>Property Code</th>
                             <th>Type Of Property</th>
                             <th>Physical Address</th>
-                            <th>Acciones</th>
+                            <th>Building Complex</th>
+                            <th>Town</th>
+                            <th>Map</th>
+                            <th>Bedrooms</th>
+                            <th>Bathrooms</th>
+                            <th>King Bed</th>
+                            <th>Queen Bed</th>
+                            <th>Twin Bed</th>
+                            <th>Sofa Bed</th>
+                            <th>Access Information</th>
+                            <th>Cleaning Instructions</th>
+                            <th>Inspection Instructions</th>
+                            <th>Maintenance Instructions</th>
+                            <th>Owner Closet</th>
+                            <th>Documents</th>
+                            <th>Payment HSKP</th>
+                            <th>Client Charge</th>
+                            <th>Acciones</th> <!-- Columna para las acciones -->
                           </tr>
                         </thead>
+                        
                         <tbody>
                             
                         </tbody>
@@ -192,8 +388,7 @@
                   </div>
                 </div>
               </div>
-              
-              
+                            
               
             </div>
             <!-- / Content -->
@@ -203,6 +398,37 @@
               class="content-footer footer bg-footer-theme"
               id="footer">
             </footer>
+
+            <!-- Toast with Animation -->
+            <div
+              class="bs-toast toast toast-ex animate__animated my-2"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              data-bs-delay="2000"
+              id="notificacionRegistro">
+              <div class="toast-header">
+                <i class="ti ti-check ti-xs me-2"></i>
+                <div class="me-auto fw-medium">¡Listo!</div>
+                <!--<small class="text-muted">11 mins ago</small>-->
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">Se han actualizado los registros de propiedades.</div>
+            </div>
+            
+            <div class="card-body">
+              <div class="row gx-3 gy-2 align-items-center">
+                <select id="selectType" class="d-none">
+                  <option value="text-success" selected>Success</option>
+                </select>
+                <select id="selectAnimation" class="d-none">
+                  <option value="animate__pulse" selected>pulse</option>
+                </select>
+
+                <button id="showToastAnimation" class="d-none">Show Toast</button>
+              </div>
+            </div>
+
             <script>
               // Cargar el navbar desde el archivo HTML
               fetch('componentes/footer.html')
@@ -237,31 +463,35 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 
-    <script src="../../assets/vendor/libs/jquery/jquery.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js?v=1.3343"></script>
-    <script src="../../assets/vendor/js/bootstrap.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/node-waves/node-waves.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/hammer/hammer.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/i18n/i18n.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js?v=1.3343"></script>
-    <script src="../../assets/vendor/js/menu.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/jquery/jquery.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/popper/popper.js?v=1.3343"></script>
+    <script src="assets/vendor/js/bootstrap.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/node-waves/node-waves.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/hammer/hammer.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/i18n/i18n.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/typeahead-js/typeahead.js?v=1.3343"></script>
+    <script src="assets/vendor/js/menu.js?v=1.3343"></script>
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js?v=1.3343"></script>
-    <script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js?v=1.3343"></script>
-
+    <script src="js/dataTables/datatables.min.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/sweetalert2/sweetalert2.js?v=1.3343"></script>
+    <script src="assets/vendor/libs/toastr/toastr.js?v=1.3343"></script>
+ 
     <!-- Main JS -->
-    <script src="../../assets/js/main.js?v=1.3343"></script>
+    <script src="assets/js/main.js?v=1.3343"></script>
 
     <!-- Page JS -->
+    <script src="assets/js/extended-ui-sweetalert2.js?v=1.3343"></script>
+    <script src="assets/js/pages-propiedades.js?v=1.3343"></script>
+    <script src="assets/js/ui-toasts.js?v=1.3343"></script>
 
-    <script src="../../assets/js/extended-ui-sweetalert2.js?v=1.3343"></script>
-    
     <script>
       const accessToken = localStorage.getItem('access_token');
+      let isEditMode = false;
+      let propertyId = false;
 
       $(document).ready(function() {
         const table = $('#miTabla').DataTable({
@@ -278,39 +508,104 @@
             },
             "dataSrc": "data" // Cambia esto según el campo donde se encuentren los registros en la respuesta
           },
-          "scrollX": true, // Habilitar el scroll horizontal
+          
+          //"scrollX": true, // Habilitar el scroll horizontal
           "lengthChange": false, // Permitir cambiar el número de registros por página
           "pageLength": 10, // Número de registros por página
           "processing": true, // Habilitar el indicador de procesamiento
           "serverSide": true, // Habilitar el procesamiento del lado del servidor
           "columns": [
-            { "data": "owner", "orderable": false  },
-            { "data": "property_code", "orderable": false  },
-            { "data": "type_of_property", "orderable": false  },
-            { "data": "physical_address", "orderable": false  },
+            { "data": "owner", "orderable": false, "width": "150px" },
+            { "data": "property_code", "orderable": false },
+            { "data": "type_of_property", "orderable": false },
+            { "data": "physical_address", "orderable": false },
+            { "data": "building_complex", "orderable": false },
+            { "data": "town", "orderable": false },
+            {
+              "data": "map",
+              "render": function(data, type, row, meta) {
+                return `<a href="${data}" target="_blank">Ver Mapa</a>`;
+              },
+              "orderable": false
+            },
+            { "data": "bedrooms", "orderable": false },
+            { "data": "bathrooms", "orderable": false },
+            { "data": "king_bed", "orderable": false },
+            { "data": "queen_bed", "orderable": false },
+            { "data": "twin_bed", "orderable": false },
+            { "data": "sofa_bed", "orderable": false },
+            { "data": "access_information", "orderable": false },
+            { "data": "cleaning_instructions", "orderable": false },
+            { "data": "inspection_instructions", "orderable": false },
+            { "data": "maintenance_instructions", "orderable": false },
+            { "data": "owner_closet", "orderable": false },
+            { "data": "documents", "orderable": false },
+            { "data": "payment_hskp", "orderable": false },
+            { "data": "client_charge", "orderable": false },
             {
               "data": null,
-              "defaultContent": "<button class='btn btn-primary edit-btn' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasEnd' aria-controls='offcanvasEnd'>Editar</button> <button type='button' class='btn btn-primary delete-btn'>Eliminar</button>",
+              "defaultContent": "<div class='btn-group' role='group' aria-label='First group'><button type='button' class='btn btn-outline-secondary delete-btn'><i class='ti ti-trash'></i></button><button type='button' class='btn btn-outline-secondary edit-btn' data-bs-toggle='offcanvas' data-bs-target='#offcanvasEnd' aria-controls='offcanvasEnd'><i class='ti ti-edit'></i></button></div>",
               "orderable": false, // Evita que esta columna se ordene
               "className": "sticky-col" // Aplicar la clase sticky a la columna de acciones
             }
           ],
+
+          "createdRow": function(row, data, dataIndex) {
+              // Añadir el atributo data-property-id con el ID de la propiedad
+              $(row).attr('data-property-id', data.id); // Suponiendo que el ID de la propiedad se encuentra en data.id
+          },
+
           "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+            "url": "js/dataTables/datatables-es-ES.json"
           }
+
+          
         });
+
 
         // Manejo de eventos para el botón de editar
         $('#miTabla tbody').on('click', '.edit-btn', function() {
-          const data = table.row($(this).parents('tr')).data();
-          alert('Editando: ' + data.nombre);
+          const row = $(this).parents('tr'); // Guardar la referencia a la fila
+          const data = table.row(row).data(); // Obtener los datos de la fila
+          propertyId = data.id; // Suponiendo que 'id' es el identificador de la propiedad
+          // Rellenar el formulario con los datos de la fila seleccionada
+          $('#owner').val(data.owner);
+          $('#property_code').val(data.property_code);
+          $('#type_of_property').val(data.type_of_property);
+          $('#physical_address').val(data.physical_address);
+          $('#building_complex').val(data.building_complex);
+          $('#town').val(data.town);
+          $('#map').val(data.map);
+          $('#bedrooms').val(data.bedrooms);
+          $('#bathrooms').val(data.bathrooms);
+          $('#king_bed').val(data.king_bed);
+          $('#queen_bed').val(data.queen_bed);
+          $('#twin_bed').val(data.twin_bed);
+          $('#sofa_bed').val(data.sofa_bed);
+          $('#access_information').val(data.access_information);
+          $('#cleaning_instructions').val(data.cleaning_instructions);
+          $('#inspection_instructions').val(data.inspection_instructions);
+          $('#maintenance_instructions').val(data.maintenance_instructions);
+          $('#owner_closet').val(data.owner_closet);
+          $('#documents').val(data.documents);
+          $('#payment_hskp').val(data.payment_hskp);
+          $('#client_charge').val(data.client_charge);
+
+          // Activar el modo de edición
+          isEditMode = true;
+
+          // Cambiar el texto del botón
+          $('#loginButtonText').text('Actualizar');
+          $('#offcanvasEndLabel').text('Editar Propiedad');
+
         });
 
         // Manejo de eventos para el botón de eliminar
         $('#miTabla tbody').on('click', '.delete-btn', function() {
           const row = $(this).parents('tr'); // Guardar la referencia a la fila
           const data = table.row(row).data(); // Obtener los datos de la fila
-          
+          propertyId = data.id; // Suponiendo que 'id' es el identificador de la propiedad
+
           Swal.fire({
             title: '¡No podrás revertir esto!',
             icon: 'warning',
@@ -324,20 +619,41 @@
             buttonsStyling: false
           }).then(function (result) {
             if (result.isConfirmed) {
-              // Aquí puedes mostrar un mensaje de éxito antes de eliminar la fila
-              Swal.fire({
-                icon: 'success',
-                title: '¡Eliminado!',
-                customClass: {
-                  confirmButton: 'btn btn-success waves-effect waves-light'
+              // Realizar la solicitud DELETE a la API
+              $.ajax({
+                url: `https://back.dashboard.chatbot.mosquedacordova.com/api/property/${propertyId}`, // URL dinámica con el ID de la propiedad
+                type: 'DELETE',
+                headers: {
+                  'Authorization': `Bearer ${accessToken}`, // Reemplaza accessToken con el token real
+                  'Content-Type': 'application/json'
+                },
+                success: function(response) {
+                  // Mostrar el mensaje de éxito si se elimina correctamente
+                  Swal.fire({
+                    icon: 'success',
+                    title: '¡Eliminado!',
+                    customClass: {
+                      confirmButton: 'btn btn-success waves-effect waves-light'
+                    }
+                  });
+
+                  // Eliminar la fila de la tabla
+                  table.row(row).remove().draw();
+                },
+                error: function(xhr, status, error) {
+                  // Manejar el error si la solicitud DELETE falla
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al eliminar la propiedad. Inténtalo de nuevo.',
+                    customClass: {
+                      confirmButton: 'btn btn-danger waves-effect waves-light'
+                    }
+                  });
                 }
               });
-
-              // Eliminar la fila
-              table.row(row).remove().draw();
             }
           });
-          
         });
 
         // Ocultar paginación si no hay suficientes filas
